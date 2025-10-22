@@ -1,0 +1,7 @@
+function App(){
+    return (
+        <>
+        <p> Good Bye, React!</p>
+    </>
+    );
+}
