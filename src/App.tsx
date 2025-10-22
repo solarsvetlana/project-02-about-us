@@ -1,35 +1,27 @@
-import React, { useState } from 'react';
-import './App.css';
-import Hello from './components/Hello';
-
-type PersonalProps = {
-  name: string;
-};
-
-function PersonalGrating({ name }: PersonalProps) {
-  return <p>Personal greeting to {name}</p>;
-}
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
+import DashboardLayout from './pages/dashboard/DashboardLayout';
+import Settings from './pages/dashboard/Settings';
+import UserInfo from './pages/dashboard/UserInfo';
+import Navbar from './components/Navbar';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const name = "Ruslana";
-
   return (
-    <>
-      <p>Hello!</p>
-      <Hello />
-      <PersonalGrating name="Alisher" />
-      <PersonalGrating name="Alisher" />
-      <PersonalGrating name="Alisher" />
-    </>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="settings" element={<Settings />} />
+          <Route path="userinfo" element={<UserInfo />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
-const user = {
-  firstName: "John",
-  lastName: "Doe"
-};
-
 export default App;
-
-
